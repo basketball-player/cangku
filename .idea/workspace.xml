@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="f180a3af-7aa1-4aec-9349-19e4a11cbe5e" name="Default Changelist" comment="说明文档">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
+=======
+    <list default="true" id="f180a3af-7aa1-4aec-9349-19e4a11cbe5e" name="Default Changelist" comment="COMMIT" />
+>>>>>>> fae7c3d (COMMIT)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="master" />
+  </component>
+>>>>>>> fae7c3d (COMMIT)
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,12 +45,29 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lx178\Documents\cangku" />
+    </key>
+  </component>
+>>>>>>> fae7c3d (COMMIT)
   <component name="ShelveChangesManager">
     <option name="remove_strategy" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+<<<<<<< HEAD
+=======
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\lx178\AppData\Roaming\Subversion</configuration>
+  </component>
+>>>>>>> fae7c3d (COMMIT)
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f180a3af-7aa1-4aec-9349-19e4a11cbe5e" name="Default Changelist" comment="" />
@@ -56,6 +90,7 @@
       <option name="project" value="LOCAL" />
       <updated>1626180685602</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00003" summary="说明文档">
       <created>1626607052510</created>
       <option name="number" value="00003" />
@@ -71,6 +106,44 @@
       <updated>1626610782424</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+=======
+    <task id="LOCAL-00003" summary="提交">
+      <created>1626277088021</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626277088021</updated>
+    </task>
+    <task id="LOCAL-00004" summary="提交">
+      <created>1626277346790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626277346790</updated>
+    </task>
+    <task id="LOCAL-00005" summary="COMMIT">
+      <created>1626278165784</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626278165784</updated>
+    </task>
+    <task id="LOCAL-00006" summary="COMMIT">
+      <created>1626572619869</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1626572619869</updated>
+    </task>
+    <task id="LOCAL-00007" summary="COMMIT">
+      <created>1626592545296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626592545296</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+>>>>>>> fae7c3d (COMMIT)
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,8 +173,13 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="提交" />
+<<<<<<< HEAD
     <MESSAGE value="说明文档" />
     <option name="LAST_COMMIT_MESSAGE" value="说明文档" />
+=======
+    <MESSAGE value="COMMIT" />
+    <option name="LAST_COMMIT_MESSAGE" value="COMMIT" />
+>>>>>>> fae7c3d (COMMIT)
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
