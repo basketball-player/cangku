@@ -83,16 +83,25 @@ class Bdrnk(models.Model):
         db_table = 'bdrnk'
 
 
-class CityInfo(models.Model):
+class CityInfos(models.Model):
     city = models.CharField(max_length=255, blank=True, null=True)
-    ms = models.DecimalField(db_column='MS', max_digits=14, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    mds = models.FloatField(db_column='MdS', blank=True, null=True)  # Field name made lowercase.
     td = models.DecimalField(db_column='TD', max_digits=32, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     nd = models.DecimalField(db_column='ND', max_digits=32, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     bd = models.DecimalField(db_column='BD', max_digits=32, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'city_info'
+        db_table = 'city_infos'
+
+
+class CityMds(models.Model):
+    city = models.CharField(max_length=255, blank=True, null=True)
+    mds = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'city_mds'
 
 
 class CityRnk(models.Model):
@@ -152,58 +161,26 @@ class DjangoSession(models.Model):
 
 
 class Fulltable(models.Model):
-    jobtitle = models.CharField(max_length=255, blank=True, null=True)
+    jn = models.CharField(db_column='JN', max_length=255, blank=True, null=True)  # Field name made lowercase.
     city = models.CharField(max_length=255, blank=True, null=True)
-    workingyears = models.CharField(max_length=255, blank=True, null=True)
-    academicrequirements = models.CharField(max_length=255, blank=True, null=True)
+    wy = models.IntegerField(db_column='WY', blank=True, null=True)  # Field name made lowercase.
+    ar = models.IntegerField(db_column='AR', blank=True, null=True)  # Field name made lowercase.
     number = models.IntegerField(blank=True, null=True)
     date = models.CharField(max_length=255, blank=True, null=True)
-    monthlysalaryrange = models.CharField(max_length=255, blank=True, null=True)
-    job = models.CharField(max_length=255, blank=True, null=True)
-    welfare = models.CharField(max_length=255, blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    companyname = models.CharField(max_length=255, blank=True, null=True)
-    contact = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=12287, blank=True, null=True)
-    minimum_monthlysalary = models.IntegerField(blank=True, null=True)
-    maximum_monthlysalary = models.IntegerField(blank=True, null=True)
-    mean_monthlysalary = models.IntegerField(blank=True, null=True)
+    msr = models.CharField(db_column='MSR', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    jc = models.CharField(db_column='JC', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    wf = models.CharField(db_column='WF', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cl = models.CharField(db_column='CL', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cm = models.CharField(db_column='CM', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    contact = models.CharField(db_column='Contact', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    jd = models.CharField(db_column='JD', max_length=16383, blank=True, null=True)  # Field name made lowercase.
+    msl = models.FloatField(db_column='MSL', blank=True, null=True)  # Field name made lowercase.
+    msh = models.FloatField(db_column='MSH', blank=True, null=True)  # Field name made lowercase.
+    msm = models.FloatField(db_column='MSM', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'fulltable'
-
-
-class FulltableCopy(models.Model):
-    jobtitle = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, blank=True, null=True)
-    workingyears = models.CharField(max_length=255, blank=True, null=True)
-    academicrequirements = models.CharField(max_length=255, blank=True, null=True)
-    number = models.IntegerField(blank=True, null=True)
-    date = models.CharField(max_length=255, blank=True, null=True)
-    monthlysalaryrange = models.CharField(max_length=255, blank=True, null=True)
-    job = models.CharField(max_length=255, blank=True, null=True)
-    welfare = models.CharField(max_length=255, blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    companyname = models.CharField(max_length=255, blank=True, null=True)
-    contact = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=12287, blank=True, null=True)
-    minimum_monthlysalary = models.IntegerField(blank=True, null=True)
-    maximum_monthlysalary = models.IntegerField(blank=True, null=True)
-    mean_monthlysalary = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'fulltable_copy'
-
-
-class MedianSalary(models.Model):
-    city = models.CharField(max_length=255, blank=True, null=True)
-    median_salary = models.DecimalField(max_digits=14, decimal_places=4, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'median_salary'
 
 
 class Msrnk(models.Model):

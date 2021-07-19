@@ -1,584 +1,223 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>数据报告1</title>
-<!-- TemplateEndEditable -->
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
-<style type="text/css">
-body,td,th {
-	color: #000000;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>数据报告1</title>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
 
-</style>
-		
-<script type="text/javascript">
-	function roll(total, idname, step) {
-		let n = 0;
-		return function () {
-			n = (n + step) >= total ? total : (n + step);
-			if (n <= total) {
-				document.getElementById(idname).innerHTML = n;
-			}
-		}
-	}
-	function start(index, idname, step, runtime = 1000){
-		let rolling = roll(index, idname, step)
-		runtime = (runtime >= 300) ? runtime : 1000;
-		for (let i = 0; i < (index/step); i++) {
-			let timer = setTimeout(rolling, (runtime/index)*i*step)
-		}
-		clearTimeout(timer);
-	}
-</script>
-	
-<script type="text/javascript">
-function show(idname,str)
-{
-	document.getElementById(idname).innerText=str;
-}
-</script>	
-	
-	<script type="text/javascript">var a1=666</script>
-	<script type="text/javascript">var a2=777</script>
-	<script type="text/javascript">var a3=888</script>
-	<script type="text/javascript">var b1=1000</script>
-	<script type="text/javascript">var b2=2000</script>
-	<script type="text/javascript">var b3=3000</script>
-	<script type="text/javascript">var str1="7766"</script>
-	<script type="text/javascript">var str2="6677"</script>
-	<script type="text/javascript">var str3="7777"</script>
+    <style type="text/css">
+        body,td,th {
+            color: #000000;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+    function roll(total, idname, step) {
+        let n = 0;
+        return function () {
+            n = (n + step) >= total ? total : (n + step);
+            if (n <= total) {
+                document.getElementById(idname).innerHTML = n;
+            }
+        }
+    }
+    function start(index, idname, step, runtime = 1000){
+        let rolling = roll(index, idname, step)
+        runtime = (runtime >= 300) ? runtime : 1000;
+        for (let i = 0; i < (index/step); i++) {
+            let timer = setTimeout(rolling, (runtime/index)*i*step)
+        }
+        clearTimeout(timer);
+    }
+
+
+    </script>
+    <script type="text/javascript">
+    function show(idname,str)
+    {
+        document.getElementById(idname).innerText=str;
+    }
+
+
+    </script>
 </head>
 
 <body>
-	
-<h1 align="center">XX地区互联网行业招聘报告</h1>
-<table width="1172" height="579" border="1" align="center">
-  <tbody>
+
+<h1 align="center">北京地区互联网行业招聘报告</h1>
+<!--<table class="table">-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <td width="1168" height="87" align="center" valign="middle">-->
+<!--            <h1>数据概览</h1>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>-->
+<!--            <table class="table table-striped table-bordered table-hover table-condensed">-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    <td width="293" height="258" align="center" valign="middle">-->
+<!--                        <div class="1">-->
+<!--                            <h3>月薪中位数</h3>-->
+<!--                            <div class="zhongweishu1" id="zhongweishu1"></div>-->
+<!--                            <div id="roota1">0</div>-->
+<!--                            <script type="text/javascript" >start({{MS}},'roota1', 1,)</script>-->
+<!--                            <h3>全国排名</h3>-->
+<!--                            <div class="paiming1" id="rootb1">0</div>-->
+<!--                            <script type="text/javascript">start({{MSrnk}},'rootb1', 4,)</script>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td width="293" height="258" align="center" valign="middle">-->
+<!--                        <div class="1">-->
+<!--                            <h3>岗位需求量</h3>-->
+<!--                            <div class="zhongweishu2" id="zhongweishu2"></div>-->
+
+<!--                            <div id="roota2">0</div>-->
+<!--                            <script type="text/javascript">start({{TD}},'roota2', 4,)</script>-->
+
+<!--                            <h3>全国排名</h3>-->
+<!--                            <div class="paiming2" id="rootb2">0</div>-->
+<!--                            <script type="text/javascript">start({{TDrnk}},'rootb2', 4,)</script>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td width="293" height="258" align="center" valign="middle">-->
+<!--                        <div class="1">-->
+<!--                            <h3>应届生需求量</h3>-->
+<!--                            <div class="zhongweishu3" id="zhongweishu3"></div>-->
+<!--                            <div id="roota3">0</div>-->
+<!--                            <script type="text/javascript">start({{ND}},'roota3', 4,)</script>-->
+<!--                            <h3>全国排名</h3>-->
+<!--                            <div class="paiming3" id="rootb3">0</div>-->
+<!--                            <script type="text/javascript">start({{NDrnk}},'rootb3', 1,)</script>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td width="293" height="258" align="center" valign="middle">-->
+<!--                        <div class="1">-->
+<!--                            <h3>热门岗位Top5</h3>-->
+<!--                            <div class="zhongweishu4" id="zhongweishu4"></div>-->
+<!--                            <div class="gangwei1">-->
+<!--                                <p id="11"></p>-->
+<!--                                <script type="text/javascript">-->
+<!--                                document.getElementById("11").innerHTML= "<div>{{top1}}</div>";-->
+
+<!--                                </script>-->
+<!--                            </div>-->
+<!--                            <div class="gangwei2">-->
+<!--                                <p id="22"></p>-->
+<!--                                <script type="text/javascript">-->
+<!--                                document.getElementById("22").innerHTML= "<div>{{top2}}</div>";-->
+
+<!--                                </script>-->
+<!--                            </div>-->
+<!--                            <div class="gangwei3">-->
+<!--                                <p id="33"></p>-->
+<!--                                <script type="text/javascript">-->
+<!--                                document.getElementById("33").innerHTML= "<div>{{top3}}</div>";-->
+
+<!--                                </script>-->
+<!--                            </div>-->
+<!--                            <div class="gangwei4">-->
+<!--                                <p id="44"></p>-->
+<!--                                <script type="text/javascript">-->
+<!--                                document.getElementById("44").innerHTML= "<div>{{top4}}</div>";-->
+
+<!--                                </script>-->
+<!--                            </div>-->
+<!--                            <div class="gangwei5">-->
+<!--                                <p id="55"></p>-->
+<!--                                <script type="text/javascript">-->
+<!--                                document.getElementById("55").innerHTML= "<div>{{top5}}</div>";-->
+
+<!--                                </script>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+
+<h1 id="yu" align="center">请选择你想查看的岗位信息。</h1>
+
+<table>
+    <tbody>
     <tr>
-      <td width="1168" height="87" align="center" valign="middle" bgcolor="#BFBEBE" style="color: #7D7A7A"><h1>数据概览</h1></td>
+        <td>
+            <div id="main1" style="width: 600px;height:400px;"></div>
+            <script src="static/js/画图左.js"></script>
+        </td>
+        <td>
+            <div id="main2" style="width: 600px;height:400px;"></div>
+            <script src="static/js/画图右.js"></script>
+        </td>
     </tr>
-    <tr>
-      <td height="423" bgcolor="#BFBEBE" style="color: #7D7A7A"><table width="1085" height="308" border="1" align="center" cellpadding="0" cellspacing="0">
-        <tbody>
-          <tr>
-            <td width="293" height="258" align="center" valign="middle"><div class="1">
-              <h3>月薪中位数</h3>
-				
-              <div class="zhongweishu1" id="zhongweishu1"></div>
-				
-              <div id="roota1" >0</div>
-				<script type="text/javascript">start(a1,'roota1', 4,)</script>
-				
-              <h3>全国排名</h3>
-              <div class="paiming1" id="rootb1">0</div>
-				<script type="text/javascript">start(b1,'rootb1', 4,)</script>
-            </div></td>
-           <td width="293" height="258" align="center" valign="middle"><div class="1">
-              <h3>岗位需求量</h3>
-              <div class="zhongweishu2" id="zhongweishu2"></div>
-			   
-              <div id="roota2" >0</div>
-				<script type="text/javascript">start(a2,'roota2', 4,)</script>
-			   
-              <h3>全国排名</h3>
-              <div class="paiming2" id="rootb2">0</div>
-			   <script type="text/javascript">start(b2,'rootb2', 4,)</script>
-            </div></td>
-            <td width="293" height="258" align="center" valign="middle"><div class="1">
-              <h3>应届生需求量</h3>
-              <div class="zhongweishu3" id="zhongweishu3"></div>
-              
-				<div id="roota3" >0</div>
-				<script type="text/javascript">start(a3,'roota3', 4,)</script>
-				
-              <h3>全国排名</h3>
-              <div class="paiming3" id="rootb3">0</div>
-				<script type="text/javascript">start(b3,'rootb3', 4,)</script>
-            </div></td>
-            <td width="293" height="258" align="center" valign="middle"><div class="1">
-              <h3>热门岗位需求量</h3>
-              <div class="zhongweishu4" id="zhongweishu4"></div>
-              <div class="gangwei1">
-				  <p id="11">这里要填入岗位1的需求量              </p>
-				  <script type="text/javascript">show("11",str1)</script>
-              </div>
-              <div class="gangwei2">
-                <p id="22">这里要填入岗位2的需求量              </p>
-				  <script type="text/javascript">show("22",str2)</script>
-              </div>
-              <div class="gangwei3">
-				<p id="33">这里要填入岗位3的需求量              </p>
-				  <script type="text/javascript">show("33",str3)</script>
-			  </div>
-            </div></td>
-          </tr>
-        </tbody>
-      </table></td>
-    </tr>
-  </tbody>
-</table>
-</body>
-	
-</html>
-
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>查看岗位信息</title>
-<!-- TemplateEndEditable -->
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
-<style type="text/css">
-
-	
-/*         这里可以设计按钮的样式，但我设计的太难看了。
-.btn{
-	width : 10px;
-	height: 10px;
-	color:aqua;
-	font-size: 10px;
-	background: grey;
-	border:10;
-	
-}
-*/
-	
-</style>                <!--给出一些页面的设置：居中，颜色-->  
-	
-<script>                     
-
-function ims3() {
-	document.getElementById("岗位1").style.backgroundColor = "yellow";
-	document.getElementById("岗位2").style.backgroundColor = "grey";
-	document.getElementById("岗位3").style.backgroundColor = "grey";
-	document.getElementById("岗位4").style.backgroundColor = "grey";
-	document.getElementById("岗位5").style.backgroundColor = "grey";
-}
-	
-function ims4() {
-	document.getElementById("岗位1").style.backgroundColor = "grey";
-	document.getElementById("岗位2").style.backgroundColor = "yellow";
-	document.getElementById("岗位3").style.backgroundColor = "grey";
-	document.getElementById("岗位4").style.backgroundColor = "grey";
-	document.getElementById("岗位5").style.backgroundColor = "grey";
-}
-	
-function ims5() {
-	document.getElementById("岗位1").style.backgroundColor = "grey";
-	document.getElementById("岗位2").style.backgroundColor = "grey";
-	document.getElementById("岗位3").style.backgroundColor = "yellow";
-	document.getElementById("岗位4").style.backgroundColor = "grey";
-	document.getElementById("岗位5").style.backgroundColor = "grey";
-}
-
-function ims6() {
-	document.getElementById("岗位1").style.backgroundColor = "grey";
-	document.getElementById("岗位2").style.backgroundColor = "grey";
-	document.getElementById("岗位3").style.backgroundColor = "grey";
-	document.getElementById("岗位4").style.backgroundColor = "yellow";
-	document.getElementById("岗位5").style.backgroundColor = "grey";
-}
-		
-function ims7() {
-	document.getElementById("岗位1").style.backgroundColor = "grey";
-	document.getElementById("岗位2").style.backgroundColor = "grey";
-	document.getElementById("岗位3").style.backgroundColor = "grey";
-	document.getElementById("岗位4").style.backgroundColor = "grey";
-	document.getElementById("岗位5").style.backgroundColor = "yellow";
-}	
-
-</script>   <!--点击按钮的颜色变化-->
-	
-	
-<script type="text/javascript" src="？？？.js"></script>    <!--外部引用js文件-->
-	
-</head>
-	
-	
-	
-	
-	
-<body>
-
-<h1 id = "yu" align="center">请选择你想查看的岗位信息。</h1>
-<table width="737" height="573" border="1" align="center" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td width="596" height="531" bgcolor="#BFBEBE" style="color: #C27A7A"><div class="动态" id="动态">此处显示  class "动态" id "动态" 的内容</div></td>
-      <td width="135" bgcolor="#BFBEBE"><table width="110" border="1" cellspacing="20" cellpadding="20">
-        <tbody>
-          <tr>
-            <td width="26"><input class="btn" type="button" name="岗位1" id="岗位1" value="岗位1" style="background-color: yellow" onclick="ims3()"></td>
-            </tr>
-          <tr>
-            <td><input class="btn" type="button" name="岗位2" id="岗位2" value="岗位2" style="background-color: grey" onclick="ims4()"></td>
-            </tr>
-          <tr>
-            <td><input class="btn" type="button" name="岗位3" id="岗位3" value="岗位3" style="background-color: grey" onclick="ims5()"></td>
-            </tr>
-          <tr>
-            <td><input class="btn" type="button" name="岗位4" id="岗位4" value="岗位4" style="background-color: grey" onclick="ims6()"></td>
-            </tr>
-          <tr>
-            <td><input class="btn" type="button" name="岗位5" id="岗位5" value="岗位5" style="background-color: grey" onclick="ims7()"></td>
-            </tr>
-          </tbody>
-      </table></td>
-    </tr>
-  </tbody>
+    </tbody>
 </table>
 
-</body>
-</html>
-
-
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-
-<script src = "js/jquery.min.js"></script>
-
-</head>
-
-<body >
-<p></p><p></p><p></p><br>
-<br>
 <h1 align="center">看看详细的信息</h1>
+<table class="table table-hover" align="center" class="table" border="0" cellspacing="0" cellpadding="0" bgcolor="#70BBB0" width="830"
+       height="20">
+
+<thead>
+    <th scope="col">岗位名称</th>
+    <th scope="col">岗位需求量</th>
+    <th scope="col">月薪中位数</th>
+    <th scope="col">应届生需求量</th>
+    <th scope="col">本科生需求量</th>
+    <th scope="col">月薪全国排名</th>
+    <th scope="col">本科生岗位占比</th>
+    <th scope="col">词云图</th>
+</thead>
+<tbody>
+<script src="static/js/建表.js"></script>
+<script src="static/js/弹出词云.js"></script>
 
 
-<table align="center" class = "table" border="0" cellspacing="0" cellpadding="0" bgcolor="#70BBB0"  width="830" height="20">
-  <tbody>
-    <tr>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">表头</th>
-      <th scope="col">词云图</th>
-    </tr>
-  </tbody>
+</tbody>
 </table>
 
-<div id="aaa"></div>
+
 <table align="center" width="350" height="30" border="0" cellspacing="0" cellpadding="0">
-  <tbody>
+    <tbody>
     <tr>
-		<th scope="col" width="26">第</th>
-      <th width="22" id = "ye" scope="col">pa</th>
-      <th width="50" scope="col">页/共</th>
-      <th width="23" id="zye" scope="col">zp</th>
-		 <th width="26" scope="col">页</th>
-		 <th width="76" scope="col"></th>
-		 <th width="28" scope="col">到:</th>
-		 <th scope="col" width="37">
-         <input name="textfield" type="text"  id="zhuan" size="5"></th>
-		 <th width="25" scope="col">页</th>
-		 <th width="45" scope="col"><input class="btn" type="button" name="转跳" id="ti" value="确定" style="background-color: yellow" onclick="tiaozhuan()"></th>
+        <th scope="col" width="26">第</th>
+        <th width="22" id="ye" scope="col">pa</th>
+        <th width="50" scope="col">页/共</th>
+        <th width="23" id="zye" scope="col">zp</th>
+        <th width="26" scope="col">页</th>
+        <th width="76" scope="col"></th>
+        <th width="28" scope="col">到:</th>
+        <th scope="col" width="37">
+            <input name="textfield" type="text" id="zhuan" size="5">
+        </th>
+        <th width="25" scope="col">页</th>
+        <th width="45" scope="col">
+            <input class="btn" type="button" name="转跳" id="ti" value="确定"
+                   style="background-color: yellow" onclick="tiaozhuan()">
+        </th>
     </tr>
-  </tbody>
+    </tbody>
 </table>
-<table align="center" width="120" height="30" border="1" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <th width="497" align="center" valign="middle" bgcolor="#5FBB87" scope="col"><input class="btn" type="button" name="上一页" id="上一页" value="上一页" style="background-color: yellow" onclick="shangyiye()"></th>
-      <th width="497" align="center" valign="middle" bgcolor="#5FBB87" scope="col"><input class="btn" type="button" name="下一页" id="下一页" value="下一页" style="background-color: yellow" onclick="xiayiye()"></th>
-    </tr>
-  </tbody>
+<table class="table" class="text-center">
+    <thead class="text-center">
+        <th class="text-right" >
+            <input class="btn btn-success" name="上一页" id="上一页" value="上一页" onclick="shangyiye()">
+        </th>
+        <th class="text-left">
+            <input class="btn btn-success" name="下一页" id="下一页" value="下一页" onclick="xiayiye()">
+        </th>
+    </thead>
 </table>
-
-
-
-<script>
-
-function createTable(id,rows,cells,tbid){
-	var tb=document.createElement("table");
-	
-	var tbody = document.createElement("tbody");
-	for(var i=1;i<=rows;i++){
-		var tr=document.createElement("tr");
-		for(var j=1;j<=cells;j++){
-			var cell=document.createElement("td");
-			cell.id = "cell_"+ i.toString() + j.toString();
-			tr.appendChild(cell);
-			
-			
-		}
-		tbody.appendChild(tr);
-	}
-	tb.appendChild(tbody);
-	tb.setAttribute("id",tbid);//设置创建的TABLE的ID
-	document.getElementById(id).appendChild(tb);
-}    //创建表格的函数
-	
-function yangshi(){
-	document.getElementById(tdid).setAttribute('border',0);//显示表格表框
-	document.getElementById(tdid).setAttribute('align','center');//设置表格显示在中间
-	for(var i=1;i<=hang;i++){                                                 
-		for(var j=1;j<=lie;j++){
-			cellid = "cell_" + i.toString() + j.toString();
-			document.getElementById(cellid).setAttribute('bgcolor',"#70BBB0")
-			document.getElementById(cellid).setAttribute('width',100);//设置表格宽度
-			document.getElementById(cellid).setAttribute('height',20);//设置表格高度
-						document.getElementById(cellid).setAttribute('cellspacing',0)
-					document.getElementById(cellid).setAttribute('cellpadding',0)
-		}
-	}
-}                  //控制表格的样式
-	
-function tianzhi(hang,lie,page){
-	for(var i=1;i<=hang;i++){                                                  //将data的数据传到表格中
-		for(var j=1;j<=lie;j++){
-			cellid = "cell_" + i.toString() + j.toString();
-			document.getElementById(cellid).innerHTML = data[(page-1)*hang+i-1][j-1];
-			if(cellid == "cell_18"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun1();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_28"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun2();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_38"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun3();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_48"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun4();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_58"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun5();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_68"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun6();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_78"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun7();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_88"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun8();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_98"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun9();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-			if(cellid == "cell_108"){
-			var html ="<input type=\"button\" value=查看  onclick=\"ciyun10();\">";
-				document.getElementById(cellid).innerHTML=html;
-			}
-		}
-	}
-}       //将data的数据填入表格
-
-function ciyun1(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun1(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun2(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun3(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun4(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun5(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun6(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun7(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun8(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun9(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-function ciyun10(){
-	OpenWindow=window.open("", "newwin", "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
-	//写成一行 
-	OpenWindow.document.write("<html>") 
-	OpenWindow.document.write("<title>词云弹窗</title>") 
-	OpenWindow.document.write("<body>") 
-	OpenWindow.document.write("<h1>这是一级标题1</h1>") 
-	OpenWindow.document.write("这部分要填入词云，别问我怎么填进来，我也不会。") 
-	OpenWindow.document.write("</body>") 
-	OpenWindow.document.write("</html>") 
-	OpenWindow.document.close() 
-}
-
-
-function tiaozhuan(){
-	page = document.getElementById('zhuan').value
-	zpage = document.getElementById('zye').innerHTML
-	if(page>zpage){
-		alert("别闹，你填这数字就离谱！")
-		}
-	else{
-		if(page<1){
-				alert("别闹，你填这数字就离谱！")
-		}
-		else{
-			document.getElementById("ye").innerHTML=page;
-			tianzhi(hang,lie,page);
-		}	
-	}
-}
-	
-function shangyiye(){
-	page = document.getElementById('ye').innerHTML
-	zpage = document.getElementById('zye').innerHTML
-	
-	page = --page
-	if(page==0){
-		page = zpage;
-	}
-	document.getElementById("ye").innerHTML=page;
-	document.getElementById("zye").innerHTML=zpage;
-	tianzhi(hang,lie,page);
-}
-
-function xiayiye(){
-	page = document.getElementById('ye').innerHTML
-	zpage = document.getElementById('zye').innerHTML
-	
-	page = ++page
-	
-	if(page>zpage){
-		page = 1;
-	}
-	document.getElementById("ye").innerHTML=page;
-	document.getElementById("zye").innerHTML=zpage;
-	tianzhi(hang,lie,page);
-
-}
-
-hang = 10
-lie = 8
-data = [[1,1,1,1,1,1,0],[9,0,8,7,6,5,4],[7,7,7,7,7,7,7],[7,6,5,4,3,2,1],[9,0,8,7,6],[2,2,2,2,2,2,2],[8,8,8,8,8,8],[1,2,3,4,5,6,7],[3,4,5,6,7],[6,7,5,4],[1,1,1,1,13],[],[],[],[3,5,7,8],[]]
-datahang = 16
-if(datahang%hang==0){
-	zpage = datahang/hang;
-}
-else{
-	zpage = Math.floor(datahang/hang) + 1;
-}
-page = 1
-tdid="aaa_i";//表格id
-createTable("aaa",hang,lie,tdid);//创建41行7列的表
-yangshi();                       //设置表格样式
-tianzhi(hang,lie,page);
-document.getElementById("ye").innerHTML=page;
-document.getElementById("zye").innerHTML=zpage;
-
-</script>
+<img src="static/wc/北京_软件测试工程师.png">
 </body>
 </html>

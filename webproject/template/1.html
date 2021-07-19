@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+
+<body>
+<!--i=0-->
+<!--<p>{{datas.cs.i}}</p>-->
+<p>{{data.cs.1}}</p>
+<table>
+    <tr>
+        <td id="c11">t11</td>
+        <td id="c12">t12</td>
+    </tr>
+    <tr>
+        <td id="c21">t21</td>
+        <td id="c22">t22</td>
+    </tr>
+</table>
+<script>
+for (var i=1; i<2; i++) {
+
+    var id = "c11";
+    var obj = document.getElementById(id);
+    obj.innerHTML = "<div>{{data.cs.1}}</div>";
+
+}
+</script>
+</body>
+</html>
