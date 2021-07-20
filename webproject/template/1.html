@@ -2,32 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="static/js/echarts.min.js"></script>
+    <script>var M1 = {{MSM1}}</script>
     <title>Title</title>
 </head>
-
 <body>
-<!--i=0-->
-<!--<p>{{datas.cs.i}}</p>-->
-<p>{{data.cs.1}}</p>
-<table>
-    <tr>
-        <td id="c11">t11</td>
-        <td id="c12">t12</td>
-    </tr>
-    <tr>
-        <td id="c21">t21</td>
-        <td id="c22">t22</td>
-    </tr>
-</table>
+<div id="chart1" style="width: 600px;height:400px;"></div>
+<!--<script>-->
+<!--    // 准备数据-->
+
+<!--    var top1 = {{top1}};  // 需求量最大的岗位1-->
+<!--    var top2 = {{top2}};  // 需求量最大的岗位2-->
+<!--    var top3 = {{top3}};  // 需求量最大的岗位3-->
+<!--    var top4 = {{top4}};  // 需求量最大的岗位4-->
+<!--    var top5 = {{top5}};  // 需求量最大的岗位5-->
+
+
+<!--//    var MSM1 = {{MSM1}}; //岗位1 月薪-->
+<!--  //  var MSM2 = []; //岗位2 月薪-->
+<!--    //var MSM3 = []; //岗位3 月薪-->
+<!--    //var MSM4 = []; //岗位4 月薪-->
+<!--    //var MSM5 = []; //岗位5 月薪-->
+
+<!--    var WY1 = []; //岗位1 工作年限-->
+<!--    var WY2 = []; //岗位2 工作年限-->
+<!--    var WY3 = []; //岗位3 工作年限-->
+<!--    var WY4 = []; //岗位4 工作年限-->
+<!--    var WY5 = []; //岗位5 工作年限-->
+
+<!--    var AR1 = []; //岗位1 学历要求-->
+<!--    var AR2 = []; //岗位2 学历要求-->
+<!--    var AR3 = []; //岗位3 学历要求-->
+<!--    var AR4 = []; //岗位4 学历要求-->
+<!--    var AR5 = []; //岗位5 学历要求-->
+
+
+<!--</script>-->
+
+
+
 <script>
-for (var i=1; i<2; i++) {
 
-    var id = "c11";
-    var obj = document.getElementById(id);
-    obj.innerHTML = "<div>{{data.cs.1}}</div>";
+    // 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('chart1'));
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '月薪-学历关系图',
+        left:'center'
+    },
+    grid:{
+        show:false
+    },
+    toolbox: {
+        show:true,
+        feature:{
+            saveAsImage:{
+                title:'保存为图片',
+                type:'png'
+            },
+            dataZoom:{
+                show:true
+            },
+            dataView:{
+                show: true,
 
-}
+                type:['bar','line']
+            },
+            magicType:{
+                show:true,
+                type:['line','bar']
+            }
+        }
+    },
+    legend: {
+        data: ["{{top1}}","{{top2}}","{{top3}}","{{top4}}","{{top5}}"],
+        bottom:0
+    },
+    xAxis:[{
+        type:"category",
+        data: ["初中", "高中", "中专", "大专", "本科", "硕士", "博士"]
+    }],
+//    splitArea:{
+//        show:false
+//    },
+    yAxis: {
+        name:"薪资",
+        //min:0,
+        //max:40,
+        //interval:8
+
+    },
+    series: [{
+        name: "{{top1}}",
+        type: 'bar',
+        data: {{AR_MSM1}}
+    },
+    {
+        name: "{{top2}}",
+        type: 'bar',
+        data: {{AR_MSM2}}
+    },
+    {
+        name: "{{top3}}",
+        type: 'bar',
+        data: {{AR_MSM3}}
+    },
+    {
+        name: "{{top4}}",
+        type: 'bar',
+        data: {{AR_MSM4}}
+    },
+    {
+        name: "{{top5}}",
+        type: 'bar',
+        data: {{AR_MSM5}}
+    }
+
+
+    ]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
 </script>
 </body>
 </html>

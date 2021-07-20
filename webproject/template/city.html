@@ -4,162 +4,295 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <title>数据报告1</title>
+    <title>数据报告</title>
     <script src="static/js/echarts.min.js"></script>
     <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/roll.js"></script>     <!--滚动效果-->
+    <script src="static/js/start.js"></script>    <!--滚动效果-->
     <script src="https://code.jquery.com/jquery.js"></script>
-
-    <style type="text/css">
-        body,td,th {
-            color: #000000;
-        }
-
-
-    </style>
-    <script type="text/javascript">
-    function roll(total, idname, step) {
-        let n = 0;
-        return function () {
-            n = (n + step) >= total ? total : (n + step);
-            if (n <= total) {
-                document.getElementById(idname).innerHTML = n;
-            }
-        }
-    }
-    function start(index, idname, step, runtime = 1000){
-        let rolling = roll(index, idname, step)
-        runtime = (runtime >= 300) ? runtime : 1000;
-        for (let i = 0; i < (index/step); i++) {
-            let timer = setTimeout(rolling, (runtime/index)*i*step)
-        }
-        clearTimeout(timer);
-    }
-
-
-    </script>
-    <script type="text/javascript">
-    function show(idname,str)
-    {
-        document.getElementById(idname).innerText=str;
-    }
-
-
-    </script>
 </head>
 
 <body>
 
 <h1 align="center">北京地区互联网行业招聘报告</h1>
-<!--<table class="table">-->
-<!--    <tbody>-->
-<!--    <tr>-->
-<!--        <td width="1168" height="87" align="center" valign="middle">-->
-<!--            <h1>数据概览</h1>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>-->
-<!--            <table class="table table-striped table-bordered table-hover table-condensed">-->
-<!--                <tbody>-->
-<!--                <tr>-->
-<!--                    <td width="293" height="258" align="center" valign="middle">-->
-<!--                        <div class="1">-->
-<!--                            <h3>月薪中位数</h3>-->
-<!--                            <div class="zhongweishu1" id="zhongweishu1"></div>-->
-<!--                            <div id="roota1">0</div>-->
-<!--                            <script type="text/javascript" >start({{MS}},'roota1', 1,)</script>-->
-<!--                            <h3>全国排名</h3>-->
-<!--                            <div class="paiming1" id="rootb1">0</div>-->
-<!--                            <script type="text/javascript">start({{MSrnk}},'rootb1', 4,)</script>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td width="293" height="258" align="center" valign="middle">-->
-<!--                        <div class="1">-->
-<!--                            <h3>岗位需求量</h3>-->
-<!--                            <div class="zhongweishu2" id="zhongweishu2"></div>-->
+<table class="table">
+    <tbody>
+    <tr>
+        <td width="1168" height="87" align="center" valign="middle">
+            <h1>数据概览</h1>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <tbody>
+                <tr>
+                    <td width="293" height="258" align="center" valign="middle">
+                        <div class="1">
+                            <h3>月薪中位数</h3>
+                            <div class="zhongweishu1" id="zhongweishu1"></div>
+                            <h3 id="roota1">0</h3>
+                            <script type="text/javascript" >start({{MdS}},'roota1', 1,)</script>
+                            <h3>全国排名</h3>
+                            <h3 class="paiming1" id="rootb1">0</h3>
+                            <script type="text/javascript">start({{MSrnk}},'rootb1', 4,)</script>
+                        </div>
+                    </td>
+                    <td width="293" height="258" align="center" valign="middle">
+                        <div class="1">
+                            <h3>岗位需求量</h3>
+                            <div class="zhongweishu2" id="zhongweishu2"></div>
 
-<!--                            <div id="roota2">0</div>-->
-<!--                            <script type="text/javascript">start({{TD}},'roota2', 4,)</script>-->
+                            <h3 id="roota2">0</h3>
+                            <script type="text/javascript">start({{TD}},'roota2', 4,)</script>
 
-<!--                            <h3>全国排名</h3>-->
-<!--                            <div class="paiming2" id="rootb2">0</div>-->
-<!--                            <script type="text/javascript">start({{TDrnk}},'rootb2', 4,)</script>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td width="293" height="258" align="center" valign="middle">-->
-<!--                        <div class="1">-->
-<!--                            <h3>应届生需求量</h3>-->
-<!--                            <div class="zhongweishu3" id="zhongweishu3"></div>-->
-<!--                            <div id="roota3">0</div>-->
-<!--                            <script type="text/javascript">start({{ND}},'roota3', 4,)</script>-->
-<!--                            <h3>全国排名</h3>-->
-<!--                            <div class="paiming3" id="rootb3">0</div>-->
-<!--                            <script type="text/javascript">start({{NDrnk}},'rootb3', 1,)</script>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td width="293" height="258" align="center" valign="middle">-->
-<!--                        <div class="1">-->
-<!--                            <h3>热门岗位Top5</h3>-->
-<!--                            <div class="zhongweishu4" id="zhongweishu4"></div>-->
-<!--                            <div class="gangwei1">-->
-<!--                                <p id="11"></p>-->
-<!--                                <script type="text/javascript">-->
-<!--                                document.getElementById("11").innerHTML= "<div>{{top1}}</div>";-->
+                            <h3>全国排名</h3>
+                            <h3 class="paiming2" id="rootb2">0</h3>
+                            <script type="text/javascript">start({{TDrnk}},'rootb2', 4,)</script>
+                        </div>
+                    </td>
+                    <td width="293" height="258" align="center" valign="middle">
+                        <div class="1">
+                            <h3>应届生需求量</h3>
+                            <div class="zhongweishu3" id="zhongweishu3"></div>
+                            <h3 id="roota3">0</h3>
+                            <script type="text/javascript">start({{ND}},'roota3', 4,)</script>
+                            <h3>全国排名</h3>
+                            <h3 class="paiming3" id="rootb3">0</h3>
+                            <script type="text/javascript">start({{NDrnk}},'rootb3', 1,)</script>
+                        </div>
+                    </td>
+                    <td width="293" height="258" align="center" valign="middle">
+                        <div class="1">
+                            <h3>热门岗位Top5</h3>
+                            <div class="zhongweishu4" id="zhongweishu4"></div>
+                            <div class="gangwei1">
+                                <p id="11"></p>
+                                <script type="text/javascript">
+                                document.getElementById("11").innerHTML= "<div>{{top1}}</div>";
 
-<!--                                </script>-->
-<!--                            </div>-->
-<!--                            <div class="gangwei2">-->
-<!--                                <p id="22"></p>-->
-<!--                                <script type="text/javascript">-->
-<!--                                document.getElementById("22").innerHTML= "<div>{{top2}}</div>";-->
+                                </script>
+                            </div>
+                            <div class="gangwei2">
+                                <p id="22"></p>
+                                <script type="text/javascript">
+                                document.getElementById("22").innerHTML= "<div>{{top2}}</div>";
 
-<!--                                </script>-->
-<!--                            </div>-->
-<!--                            <div class="gangwei3">-->
-<!--                                <p id="33"></p>-->
-<!--                                <script type="text/javascript">-->
-<!--                                document.getElementById("33").innerHTML= "<div>{{top3}}</div>";-->
+                                </script>
+                            </div>
+                            <div class="gangwei3">
+                                <p id="33"></p>
+                                <script type="text/javascript">
+                                document.getElementById("33").innerHTML= "<div>{{top3}}</div>";
 
-<!--                                </script>-->
-<!--                            </div>-->
-<!--                            <div class="gangwei4">-->
-<!--                                <p id="44"></p>-->
-<!--                                <script type="text/javascript">-->
-<!--                                document.getElementById("44").innerHTML= "<div>{{top4}}</div>";-->
+                                </script>
+                            </div>
+                            <div class="gangwei4">
+                                <p id="44"></p>
+                                <script type="text/javascript">
+                                document.getElementById("44").innerHTML= "<div>{{top4}}</div>";
 
-<!--                                </script>-->
-<!--                            </div>-->
-<!--                            <div class="gangwei5">-->
-<!--                                <p id="55"></p>-->
-<!--                                <script type="text/javascript">-->
-<!--                                document.getElementById("55").innerHTML= "<div>{{top5}}</div>";-->
+                                </script>
+                            </div>
+                            <div class="gangwei5">
+                                <p id="55"></p>
+                                <script type="text/javascript">
+                                document.getElementById("55").innerHTML= "<div>{{top5}}</div>";
 
-<!--                                </script>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
+                                </script>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 <h1 id="yu" align="center">请选择你想查看的岗位信息。</h1>
 
-<table>
+<table class="table table-bordered  table-condensed">
     <tbody>
     <tr>
         <td>
-            <div id="main1" style="width: 600px;height:400px;"></div>
-            <script src="static/js/画图左.js"></script>
+            <div id="chart1" style="width: 600px;height:400px;"></div>
+            <script>
+
+    // 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('chart1'));
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '月薪-学历关系图',
+        left:'center'
+    },
+    grid:{
+        show:false
+    },
+    toolbox: {
+        show:true,
+        feature:{
+            saveAsImage:{
+                title:'保存为图片',
+                type:'png'
+            },
+            dataZoom:{
+                show:true
+            },
+            dataView:{
+                show: true,
+
+                type:['bar','line']
+            },
+            magicType:{
+                show:true,
+                type:['line','bar']
+            }
+        }
+    },
+    legend: {
+        data: ["{{top1}}","{{top2}}","{{top3}}","{{top4}}","{{top5}}"],
+        bottom:0
+    },
+    xAxis:[{
+        type:"category",
+        data: ["初中", "高中", "中专", "大专", "本科", "硕士", "博士"]
+    }],
+//    splitArea:{
+//        show:false
+//    },
+    yAxis: {
+        name:"薪资",
+        //min:0,
+        //max:40,
+        //interval:8
+
+    },
+    series: [{
+        name: "{{top1}}",
+        type: 'bar',
+        data: {{AR_MSM1}}
+    },
+    {
+        name: "{{top2}}",
+        type: 'bar',
+        data: {{AR_MSM2}}
+    },
+    {
+        name: "{{top3}}",
+        type: 'bar',
+        data: {{AR_MSM3}}
+    },
+    {
+        name: "{{top4}}",
+        type: 'bar',
+        data: {{AR_MSM4}}
+    },
+    {
+        name: "{{top5}}",
+        type: 'bar',
+        data: {{AR_MSM5}}
+    }
+
+
+    ]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
         </td>
         <td>
-            <div id="main2" style="width: 600px;height:400px;"></div>
-            <script src="static/js/画图右.js"></script>
-        </td>
+            <div id="chart2" style="width: 600px;height:400px;"></div>
+            <script>
+
+    // 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('chart2'));
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '月薪-工作年限关系图',
+        left:'center'
+    },
+    grid:{
+        show:false
+    },
+    toolbox: {
+        show:true,
+        feature:{
+            saveAsImage:{
+                title:'保存为图片',
+                type:'png'
+            },
+            dataZoom:{
+                show:true
+            },
+            dataView:{
+                show: true,
+
+                type:['bar','line']
+            },
+            magicType:{
+                show:true,
+                type:['line','bar']
+            }
+        }
+    },
+    legend: {
+        data: ["{{top1}}","{{top2}}","{{top3}}","{{top4}}","{{top5}}"],
+        bottom:0
+    },
+    xAxis:[{
+        type:"category",
+        data: ["无需经验", "在校生/应届生", "1年经验", "2年经验", "3-4年经验", "5-7年经验", "8-9年经验", "10年以上经验"]
+    }],
+//    splitArea:{
+//        show:false
+//    },
+    yAxis: {
+        name:"薪资",
+        //min:0,
+        //max:40,
+        //interval:8
+
+    },
+    series: [{
+        name: "{{top1}}",
+        type: 'bar',
+        data: {{WY_MSM1}}
+    },
+    {
+        name: "{{top2}}",
+        type: 'bar',
+        data: {{WY_MSM2}}
+    },
+    {
+        name: "{{top3}}",
+        type: 'bar',
+        data: {{WY_MSM3}}
+    },
+    {
+        name: "{{top4}}",
+        type: 'bar',
+        data: {{WY_MSM4}}
+    },
+    {
+        name: "{{top5}}",
+        type: 'bar',
+        data: {{WY_MSM5}}
+    }
+
+
+    ]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
+
     </tr>
     </tbody>
 </table>
@@ -180,44 +313,57 @@
 </thead>
 <tbody>
 <script src="static/js/建表.js"></script>
-<script src="static/js/弹出词云.js"></script>
-
-
 </tbody>
 </table>
+    <script>
+        for (var i = 1; i <= 10;i++) {
+            document.getElementById("button_"+i.toString()).addEventListener('click', function(){
+            //alert("hhh");
+            OpenWindow=window.open("", "newwin",
+            "height=500, width=1000,top = 200,left=250,toolbar=no,scrollbars="+scroll+",menubar=no");
+            //写成一行
+            OpenWindow.document.write("<html>")
+            OpenWindow.document.write("<title>词云弹窗</title>")
+            OpenWindow.document.write("<body>")
+            OpenWindow.document.write("<img align=\"center\" src=\"static/wc/北京_软件测试工程师.png\">")
+            OpenWindow.document.write("</body>")
+            OpenWindow.document.write("</html>")
+            OpenWindow.document.close()
+        }, false);
+    }
+    </script>
 
+<!--<table align="center" width="350" height="30" border="0" cellspacing="0" cellpadding="0">-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <th scope="col" width="26">第</th>-->
+<!--        <th width="22" id="ye" scope="col">pa</th>-->
+<!--        <th width="50" scope="col">页/共</th>-->
+<!--        <th width="23" id="zye" scope="col">zp</th>-->
+<!--        <th width="26" scope="col">页</th>-->
+<!--        <th width="76" scope="col"></th>-->
+<!--        <th width="28" scope="col">到:</th>-->
+<!--        <th scope="col" width="37">-->
+<!--            <input name="textfield" type="text" id="zhuan" size="5">-->
+<!--        </th>-->
+<!--        <th width="25" scope="col">页</th>-->
+<!--        <th width="45" scope="col">-->
+<!--            <input class="btn" type="button" name="转跳" id="ti" value="确定"-->
+<!--                   style="background-color: yellow" onclick="tiaozhuan()">-->
+<!--        </th>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 
-<table align="center" width="350" height="30" border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-    <tr>
-        <th scope="col" width="26">第</th>
-        <th width="22" id="ye" scope="col">pa</th>
-        <th width="50" scope="col">页/共</th>
-        <th width="23" id="zye" scope="col">zp</th>
-        <th width="26" scope="col">页</th>
-        <th width="76" scope="col"></th>
-        <th width="28" scope="col">到:</th>
-        <th scope="col" width="37">
-            <input name="textfield" type="text" id="zhuan" size="5">
-        </th>
-        <th width="25" scope="col">页</th>
-        <th width="45" scope="col">
-            <input class="btn" type="button" name="转跳" id="ti" value="确定"
-                   style="background-color: yellow" onclick="tiaozhuan()">
-        </th>
-    </tr>
-    </tbody>
-</table>
-<table class="table" class="text-center">
-    <thead class="text-center">
-        <th class="text-right" >
-            <input class="btn btn-success" name="上一页" id="上一页" value="上一页" onclick="shangyiye()">
-        </th>
-        <th class="text-left">
-            <input class="btn btn-success" name="下一页" id="下一页" value="下一页" onclick="xiayiye()">
-        </th>
-    </thead>
-</table>
-<img src="static/wc/北京_软件测试工程师.png">
+<!--<table class="table" class="text-center">-->
+<!--    <thead class="text-center">-->
+<!--        <th class="text-right" >-->
+<!--            <input class="btn btn-success" name="上一页" id="上一页" value="上一页" onclick="shangyiye()">-->
+<!--        </th>-->
+<!--        <th class="text-left">-->
+<!--            <input class="btn btn-success" name="下一页" id="下一页" value="下一页" onclick="xiayiye()">-->
+<!--        </th>-->
+<!--    </thead>-->
+<!--</table>-->
 </body>
 </html>

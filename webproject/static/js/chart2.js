@@ -1,5 +1,5 @@
 // 基于准备好的dom，初始化echarts实例
-var myChart = echarts.init(document.getElementById('main1'));
+var myChart = echarts.init(document.getElementById('chart2'));
 // 指定图表的配置项和数据
 var option = {
     title: {
@@ -7,10 +7,8 @@ var option = {
         subtext:"数据来自前程无忧网站",
         left:'center',
     },
-    grid:{
-        show:false
-    },
-    toolbox: {
+    tooltip: {},
+      toolbox: {
         show:true,
         feature:{
             saveAsImage:{
@@ -32,26 +30,26 @@ var option = {
         }
     },
     legend: {
-        data:['岗位1','岗位2','岗位3','岗位4'],
+        data:['岗位1','岗位2','岗位3','岗位4','岗位5'],
         bottom:0
     },
     xAxis:[{
         type:"category",
-        data: ["学历1","学历1","学历1","学历1","学历1","学历1"]
+        data: ["工作年限1","工作年限1","工作年限1","工作年限1","工作年限1","工作年限1"]
     }],
     splitArea:{
         show:false
     },
     yAxis: {
-<!--                axisLine:{show:false},-->
-        show:true
         name:"薪资",
         min:0,
         max:40,
         interval:8,
-
+        show:false,
+        grid:false
     },
-    series: [{
+    series: [
+    {
         name: '岗位1',
         type: 'bar',
         data: [5, 20, 36, 10, 10, 20]
@@ -70,10 +68,13 @@ var option = {
         name: '岗位4',
         type: 'bar',
         data: [5, 20, 36, 10, 10, 20]
+    },
+    {
+        name: '岗位5',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
     }
-
     ]
 };
-
 // 使用刚指定的配置项和数据显示图表。
 myChart.setOption(option);
