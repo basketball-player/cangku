@@ -87,11 +87,40 @@ def query4(cursor, city, top_job_list, n=5):
 
 
 # 5.计算某城市应届生需求量最大的前80个岗位的详细信息
-def query5(cursor, city, top_job_list):
-    sql = '''
-    '''.format()
-    cursor.execute(sql)
-    pass
+def query5(cursor, city, top_job_list,n):
+    rows = []
+    try:
+        for i in range(n):
+            row = []
+            sql = '''
+            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
+            FROM fulltable WHERE city='{}' AND JC='{}' 
+            '''.format(city,top_job_list[i])
+            cursor.execute(sql)
+            result_list1 = dict_fetch_all(cursor)
+            result_list1[0]["MMSM"] = round(result_list1[0]["MMSM"], 2)
+            row.append(result_list1[0])
+            sql = '''
+            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
+            FROM fulltable WHERE city='{}' AND JC='{}' AND AR=4 
+            '''.format(city,top_job_list[i])
+            cursor.execute(sql)
+            result_list2 = dict_fetch_all(cursor)
+            row.append(result_list2[0])
+            sql = '''
+            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
+            FROM fulltable WHERE city='{}' AND JC='{}' AND WY=1 
+            '''.format(city,top_job_list[i])
+            cursor.execute(sql)
+            result_list3 = dict_fetch_all(cursor)
+            row.append(result_list3[0])
+            row.append({"rate":round(100*result_list3[0]["TN"]/result_list1[0]["TN"], 3)})
+            # print(row)
+            rows.append(row)
+    except:
+        rows.append([])
+    return rows
+
 
 
 # 6. 计算生成词云

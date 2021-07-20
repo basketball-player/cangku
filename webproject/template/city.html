@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>数据报告</title>
     <script src="static/js/echarts.min.js"></script>
@@ -303,16 +303,31 @@ myChart.setOption(option);
 
 <thead>
     <th scope="col">岗位名称</th>
-    <th scope="col">岗位需求量</th>
-    <th scope="col">月薪中位数</th>
-    <th scope="col">应届生需求量</th>
-    <th scope="col">本科生需求量</th>
-    <th scope="col">月薪全国排名</th>
-    <th scope="col">本科生岗位占比</th>
+    <th scope="col">岗位需求量（人）</th>
+    <th scope="col">月薪水平（千/月）</th>
+    <th scope="col">应届生需求量（人）</th>
+    <th scope="col">本科生需求量（人）</th>
+    <th scope="col">本科生岗位占比（%）</th>
     <th scope="col">词云图</th>
 </thead>
 <tbody>
-<script src="static/js/建表.js"></script>
+<!--<script src="static/js/建表.js"></script>-->
+ <script>
+        var str = "";
+        for (var i = 1; i <= 10;i++)
+        {
+            str += "<tr>";
+            for(var j = 1; j < 7;j++){
+                id = "cell_" + i.toString() + j.toString();
+                str += "<td id=\"" + id + "\"></td>";
+            }
+            str += "<td id=\"" +"cell_" + i.toString() + "8\">" +
+            "<input class=\"btn btn-default\"  value=查看 id=\"button_" + i.toString()+"\">"+ "</td>";
+            str += "</tr>";
+        }
+        document.write(str);
+    </script>
+
 </tbody>
 </table>
     <script>
@@ -337,9 +352,9 @@ myChart.setOption(option);
 <!--    <tbody>-->
 <!--    <tr>-->
 <!--        <th scope="col" width="26">第</th>-->
-<!--        <th width="22" id="ye" scope="col">pa</th>-->
+<!--        <th width="22" id="ye" scope="col">1</th>-->
 <!--        <th width="50" scope="col">页/共</th>-->
-<!--        <th width="23" id="zye" scope="col">zp</th>-->
+<!--        <th width="23" id="zye" scope="col">2</th>-->
 <!--        <th width="26" scope="col">页</th>-->
 <!--        <th width="76" scope="col"></th>-->
 <!--        <th width="28" scope="col">到:</th>-->
@@ -354,16 +369,98 @@ myChart.setOption(option);
 <!--    </tr>-->
 <!--    </tbody>-->
 <!--</table>-->
+ <script>
+    var i=0
+    var j=1
+    //j = document.getElementById("ye").innerHTML;
+    i = 0-(j-1)*10
 
+    {% for row in top_job_list %}
+        i++;
+        if (i>0 & i<=10) {
+            document.getElementById("cell_"+i.toString()+"1").innerText = "{{row}}";
+        }
+    {% endfor %}
+
+    i=0-(j-1)*10
+    {% for row in data%}
+        i++;
+        if (i>0 & i<=10) {
+            document.getElementById("cell_"+i.toString()+"2").innerText = "{{row.0.TN}}";
+            document.getElementById("cell_"+i.toString()+"3").innerText = "{{row.0.MMSM}}";
+            document.getElementById("cell_"+i.toString()+"4").innerText = "{{row.1.TN}}";
+            document.getElementById("cell_"+i.toString()+"5").innerText = "{{row.2.TN}}";
+            document.getElementById("cell_"+i.toString()+"6").innerText = "{{row.3.rate}}";
+        }
+    {% endfor %}
+    </script>
+<script>
+    function shangyiye(){
+    alert("syy");
+	page = document.getElementById('ye').innerHTML
+	zpage = document.getElementById('zye').innerHTML
+
+	page = --page
+	if(page==0){
+		page = zpage;
+	}
+	document.getElementById("ye").innerHTML=page;
+	document.getElementById("zye").innerHTML=zpage;
+	tianzhi(page);
+}
+
+function xiayiye(){
+    alert("xyy");
+	page = document.getElementById('ye').innerHTML
+	zpage = document.getElementById('zye').innerHTML
+
+	page = ++page
+
+	if(page>zpage){
+		page = 1;
+	}
+	document.getElementById("ye").innerHTML=page;
+	document.getElementById("zye").innerHTML=zpage;
+	tianzhi(page);
+
+}
+function tianzhi(page){
+    var i=0
+    alert(i);
+    i = 0-(page-1)*10
+    alert(i);
+
+    {% for row in top_job_list %}
+        i++;
+        if (i>0 & i<=10) {
+            document.getElementById("cell_"+i.toString()+"1").innerText = "{{row}}";
+        }
+    {% endfor %}
+
+    i=0-(page-1)*10
+    {% for row in data%}
+        i++;
+        if (i>0 & i<=10) {
+            document.getElementById("cell_"+i.toString()+"2").innerText = "{{row.0.TN}}";
+            document.getElementById("cell_"+i.toString()+"3").innerText = "{{row.0.MMSM}}";
+            document.getElementById("cell_"+i.toString()+"4").innerText = "{{row.1.TN}}";
+            document.getElementById("cell_"+i.toString()+"5").innerText = "{{row.2.TN}}";
+            document.getElementById("cell_"+i.toString()+"6").innerText = "{{row.3.rate}}";
+        }
+    {% endfor %}
+
+<!--</script>-->
 <!--<table class="table" class="text-center">-->
 <!--    <thead class="text-center">-->
 <!--        <th class="text-right" >-->
-<!--            <input class="btn btn-success" name="上一页" id="上一页" value="上一页" onclick="shangyiye()">-->
+<!--            <input type="button" name="上一页" id="上一页" value="上一页" onclick="shangyiye()">-->
 <!--        </th>-->
 <!--        <th class="text-left">-->
-<!--            <input class="btn btn-success" name="下一页" id="下一页" value="下一页" onclick="xiayiye()">-->
+<!--            <input type="button" name="下一页" id="下一页" value="下一页" onclick="xiayiye()">-->
 <!--        </th>-->
 <!--    </thead>-->
 <!--</table>-->
+
+
 </body>
 </html>

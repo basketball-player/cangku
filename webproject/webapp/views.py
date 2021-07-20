@@ -18,7 +18,7 @@ def city_page(request):
     MdS, MSrnk, TD, TDrnk, ND, NDrnk = myquery.query1(cursor, city)
 
     # 2.计算出某城市的应届生需求量最大的n个岗位
-    top_job_list = myquery.query2(cursor, city, 5)
+    top_job_list = myquery.query2(cursor, city, 20)
     top1 = top_job_list[0]  # 需求量最大的岗位1
     top2 = top_job_list[1]  # 需求量最大的岗位2
     top3 = top_job_list[2]  # 需求量最大的岗位3
@@ -42,7 +42,11 @@ def city_page(request):
     WY_MSM5 = WY_MSM_lists[4]
 
     # 5.计算应届生需求量最大的前80个岗位的详细信息
+    data = myquery.query5(cursor,city,top_job_list,20)
+    # hang = len(data)
+    # zpage = 2
 
     # 6.查看某个城市某个岗位的岗位描述词云图
-    myquery.query6(cursor, city, top1)
+    # myquery.query6(cursor, city, top1)
+
     return render(request, "city.html", locals())
