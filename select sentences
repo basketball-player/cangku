@@ -1,0 +1,38 @@
+CREATE VIEW C
+AS
+select jobtitle,mean_monthlysalary,workingyears,academicrequirements,number
+FROM fulltable
+WHERE city like '%北京%'
+with check option;
+
+
+SELECT COUNT(*),SUM(number)
+FROM C
+WHERE jobtitle='测试工程师';
+
+
+CREATE VIEW cc
+as
+SELECT jobtitle,SUM(number)
+FROM c
+GROUP BY jobtitle
+ORDER BY SUM(number) DESC LIMIT 80;
+
+
+SELECT jobtitle,SUM(number),AVG(mean_monthlysalary)
+FROM c
+GROUP BY jobtitle
+ORDER BY SUM(number) DESC LIMIT 80;
+
+
+SELECT jobtitle,SUM(number)
+FROM c
+WHERE workingyears = 1
+GROUP BY jobtitle
+ORDER BY SUM(number) DESC LIMIT 80;
+
+SELECT jobtitle,SUM(number)
+FROM c
+WHERE academicrequirements = 4
+GROUP BY jobtitle
+ORDER BY SUM(number) DESC LIMIT 80;
