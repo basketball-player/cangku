@@ -1,8 +1,6 @@
-import PIL.Image as image
-from wordcloud import WordCloud
 import jieba
-import os
-import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
 
 def trans_CN(text):
     # 接收分词的字符串
@@ -11,21 +9,22 @@ def trans_CN(text):
     result = " ".join(word_list)
     return result
 
-def create_wordcloud(str,name):
-    #输入参数为要生成词云的字符串，以及保存的文件名
 
-    #文本分词,
-    text = trans_CN(str)
+def create_wordcloud(m_str, name):
+    # 输入参数为要生成词云的字符串，以及保存的文件名
 
-    #停用词库，路径应根据网站文件夹更改
+    # 文本分词,
+    text = trans_CN(m_str)
+
+    # 停用词库，路径应根据网站文件夹更改
     stopwords = set()
-    content = [line.strip() for line in open('static/stopword_cn_2.txt','r',encoding='utf-8').readlines()]
+    content = [line.strip() for line in open('static/stopword_cn_2.txt', 'r', encoding='utf-8').readlines()]
     stopwords.update(content)
 
-    #生成词云对象
-    wordcloud = WordCloud(
+    # 生成词云对象
+    wordCloud = WordCloud(
         # 添加遮罩层
-    #    mask=mask,
+        # mask=mask,
         # 生成中文字的字体,必须要加,不然看不到中文，路径根据网站文件更改
         font_path="static/font/simhei.ttf",
         stopwords=stopwords,
@@ -33,9 +32,7 @@ def create_wordcloud(str,name):
         width=800
     ).generate(text)
 
-    #设置导出路径，应该根据网站文件夹更改。
-    save_path = name+'.png'
-    wordcloud.to_file(save_path)
-    #print(save_path,"is done")
-
-
+    # 设置导出路径，应该根据网站文件夹更改。
+    save_path = name + '.png'
+    wordCloud.to_file(save_path)
+    print(save_path, "已保存")

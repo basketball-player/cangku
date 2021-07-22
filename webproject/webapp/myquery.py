@@ -29,7 +29,7 @@ def query2(cursor, city, n=5):
     sql = '''
         SELECT city, JC, sum(number) AS ND 
         FROM fulltable 
-        WHERE WY=0 AND JC NOT LIKE '%其他%' AND city='{}'
+        WHERE WY=1 AND JC NOT LIKE '%其他%' AND city='{}'
         GROUP BY city, JC
         ORDER BY ND DESC
     '''.format(city)
@@ -41,7 +41,7 @@ def query2(cursor, city, n=5):
             top_jobs.append(result_list[i]["JC"])
     except:
         pass
-    return top_jobs
+    return len(top_jobs), top_jobs
 
 
 # 3.计算出Top5岗位的 月薪与学历要求的关系
@@ -87,40 +87,51 @@ def query4(cursor, city, top_job_list, n=5):
 
 
 # 5.计算某城市应届生需求量最大的前80个岗位的详细信息
-def query5(cursor, city, top_job_list,n):
-    rows = []
-    try:
-        for i in range(n):
-            row = []
-            sql = '''
-            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
-            FROM fulltable WHERE city='{}' AND JC='{}' 
-            '''.format(city,top_job_list[i])
-            cursor.execute(sql)
-            result_list1 = dict_fetch_all(cursor)
-            result_list1[0]["MMSM"] = round(result_list1[0]["MMSM"], 2)
-            row.append(result_list1[0])
-            sql = '''
-            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
-            FROM fulltable WHERE city='{}' AND JC='{}' AND AR=4 
-            '''.format(city,top_job_list[i])
-            cursor.execute(sql)
-            result_list2 = dict_fetch_all(cursor)
-            row.append(result_list2[0])
-            sql = '''
-            SELECT SUM(number) AS TN,AVG(MSM) AS MMSM 
-            FROM fulltable WHERE city='{}' AND JC='{}' AND WY=1 
-            '''.format(city,top_job_list[i])
-            cursor.execute(sql)
-            result_list3 = dict_fetch_all(cursor)
-            row.append(result_list3[0])
-            row.append({"rate":round(100*result_list3[0]["TN"]/result_list1[0]["TN"], 3)})
-            # print(row)
-            rows.append(row)
-    except:
-        rows.append([])
-    return rows
+def query5(cursor, city, top_job_list):
+    sql = '''
+        SELECT JC, SUM(number) AS TN,AVG(MSM) AS MMSM 
+        FROM fulltable WHERE city='{}' AND JC in {} AND AR=4
+        GROUP BY JC
+    '''.format(city, top_job_list).replace('[', '(').replace(']', ')')
+    cursor.execute(sql)
+    result_list1 = cursor.fetchall()
 
+    sql = '''
+            SELECT SUM(number) AS TN
+            FROM fulltable WHERE city='{}' AND JC in {} AND WY=1
+            GROUP BY JC
+        '''.format(city, top_job_list).replace('[', '(').replace(']', ')')
+    cursor.execute(sql)
+    result_list2 = cursor.fetchall()
+    # print(result_list2)
+
+    sql = '''
+            SELECT SUM(number) AS TN
+            FROM fulltable WHERE city='{}' AND JC in {}
+            GROUP BY JC
+    '''.format(city, top_job_list).replace('[', '(').replace(']', ')')
+    cursor.execute(sql)
+    result_list3 = cursor.fetchall()
+    # print(result_list3)
+
+    # 合并结果
+    result = []
+
+    for i in range(len(top_job_list)):
+        try:
+            i1 = result_list1[i][0]            # 岗位名称
+            i2 = result_list1[i][1]            # 岗位需求量
+            i3 = round(result_list1[i][2], 2)  # 月薪水平
+            i4 = result_list2[i][0]            # 应届生需求量
+            i5 = result_list3[i][0]            # 本科生需求量
+            i6 = round(i5 / i2, 3)             # 本科岗位占比
+            result.append([i1, i2, i3, i4, i5, i6])
+            # print([i1, i2, i3, i4, i5, i6])
+        except:
+            pass
+
+    # print(len(result))
+    return len(result), result
 
 
 # 6. 计算生成词云
@@ -133,4 +144,4 @@ def query6(cursor, city, job):
     cursor.execute(sql)
     results = dict_fetch_all(cursor)
     # print(results[0]["keywords"])
-    wc.create_wordcloud(results[0]["keywords"], "static/wc/北京_软件测试工程师")
+    wc.create_wordcloud(results[0]["keywords"], "static/wc/" + city + "_" + job)
